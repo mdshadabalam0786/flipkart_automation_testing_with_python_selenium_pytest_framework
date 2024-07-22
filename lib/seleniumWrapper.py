@@ -2,6 +2,7 @@ from time import  sleep
 from datetime import datetime
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as Ec
 class Selenium_wrapper:
     def __init__(self,driver):
@@ -17,6 +18,12 @@ class Selenium_wrapper:
     def sendKey(self,*args):
         self.driver.find_element(f"{args[0]}",f"{args[1]}").send_keys(f"{args[2]}")
         self.driver.implicitly_wait(20)
+
+    def select_drop_down_by_value(self,*args):
+        drop_down_element1 = self.driver.find_element(args[0], args[1])
+        self.driver.implicitly_wait(20)
+        select = Select(drop_down_element1)
+        select.select_by_value(args[2])
     def explicit_wait_by_visible_element(self,*args):
         wait=WebDriverWait(self.driver,20)
         wait.until(Ec.visibility_of_element_located((args[0],args[1])))

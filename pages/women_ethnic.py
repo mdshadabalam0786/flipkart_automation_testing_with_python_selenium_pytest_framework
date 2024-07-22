@@ -1,6 +1,7 @@
 import re
 from random import randint
 from time import sleep
+from selenium.webdriver.support.select import Select
 from lib.seleniumWrapper import Selenium_wrapper
 from lib.xpath_women_ethnic import Xpath_women_ethnic
 
@@ -53,10 +54,10 @@ class Womenethnic_saree(Xpath_women_ethnic):
 
     def select_random_sarees_mouse_over_on_image(self):
         p1 = Selenium_wrapper(self.driver)
-        p1.mouseMoveActionToElement("xpath", Womenethnic_saree.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Womenethnic_saree.xpathWomenEthnic)
-        p1.click_element('xpath', Womenethnic_saree.xpathWomenSarees)
-        p1.click_element('xpath', Womenethnic_saree.xpathSarees)
+        p1.mouseMoveActionToElement("xpath", Xpath_women_ethnic.xpathFashion)
+        p1.mouseMoveActionToElement('xpath', Xpath_women_ethnic.xpathWomenEthnic)
+        p1.click_element('xpath', Xpath_women_ethnic.xpathWomenSarees)
+        p1.click_element('xpath', Xpath_women_ethnic.xpathSarees)
         priceElements = p1.click_elements('xpath', Xpath_women_ethnic.xpathPrices)
         randomNum=randint(1,40)
         priceElements[randomNum].click()
@@ -69,10 +70,10 @@ class Womenethnic_saree(Xpath_women_ethnic):
 
     def select_random_sarees_mouse_over_on_fullimage(self):
         p1 = Selenium_wrapper(self.driver)
-        p1.mouseMoveActionToElement("xpath", Womenethnic_saree.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Womenethnic_saree.xpathWomenEthnic)
-        p1.click_element('xpath', Womenethnic_saree.xpathWomenSarees)
-        p1.click_element('xpath', Womenethnic_saree.xpathSarees)
+        p1.mouseMoveActionToElement("xpath", Xpath_women_ethnic.xpathFashion)
+        p1.mouseMoveActionToElement('xpath', Xpath_women_ethnic.xpathWomenEthnic)
+        p1.click_element('xpath', Xpath_women_ethnic.xpathWomenSarees)
+        p1.click_element('xpath', Xpath_women_ethnic.xpathSarees)
         priceElements = p1.click_elements('xpath', Xpath_women_ethnic.xpathPrices)
         randomNum=randint(1,40)
         priceElements[randomNum].click()
@@ -82,14 +83,39 @@ class Womenethnic_saree(Xpath_women_ethnic):
         p1.mouseMoveActionToFullImage('xpath','//img[@class="_0DkuPH"]')
         sleep(5)
 
-class Women_ethnic_saree_prices_validation:
+class Women_ethnic_saree_prices_validation(Xpath_women_ethnic):
+    saree_price = []
     def __init__(self,driver):
         self.driver=driver
 
     def validate_saree_price_range_300_to_500(self):
         p1 = Selenium_wrapper(self.driver)
-        p1.mouseMoveActionToElement("xpath", Womenethnic_saree.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Womenethnic_saree.xpathWomenEthnic)
-        p1.click_element('xpath', Womenethnic_saree.xpathWomenSarees)
-        p1.click_element('xpath', Womenethnic_saree.xpathSarees)
+        p1.mouseMoveActionToElement("xpath", Xpath_women_ethnic.xpathFashion)
+        p1.mouseMoveActionToElement('xpath', Xpath_women_ethnic.xpathWomenEthnic)
+        p1.click_element('xpath', Xpath_women_ethnic.xpathWomenSarees)
+        p1.click_element('xpath', Xpath_women_ethnic.xpathSarees)
+        sleep(3)
+        p1.select_drop_down_by_value("xpath",Xpath_women_ethnic.xpath_min_select,"300")
+        sleep(3)
+        p1.select_drop_down_by_value("xpath",Xpath_women_ethnic.xpath_max_select,"500")
+        self.driver.implicitly_wait(10)
+        sleep(3)
+
+        priceElements = p1.click_elements('xpath', Xpath_women_ethnic.xpathPrices)
+        for priceelement in priceElements:
+            price = priceelement.text
+            price_split = ''.join(price.split(','))
+            a = f"\d+"
+            filterred_price = re.findall(a, price_split)
+            if filterred_price:
+                Women_ethnic_saree_prices_validation.saree_price.append(filterred_price[0])
+            else:
+                Women_ethnic_saree_prices_validation.saree_price.append(price)
+        print(Women_ethnic_saree_prices_validation.saree_price)
+        for price_ in Women_ethnic_saree_prices_validation.saree_price:
+            if int(price_)>=300 and int(price_)<=500:
+                print("all prices are in range between 300 to 500")
+            else:
+                print("this prices is not in the range between 300 to 500",price_)
+
         sleep(10)
