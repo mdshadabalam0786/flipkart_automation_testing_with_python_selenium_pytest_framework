@@ -1,13 +1,14 @@
 class Xpath_men_top_wear:
-    xpathFashion = '//div[@aria-label="Fashion"]'
-    xpathMenTopWear = '//a[text()="Men\'s Top Wear"]'
+    xpathFashion = '//span[text()="Fashion"]'
+    xpathMan='//span[text()="Men"]'
+    xpathMenTopWear = '//a[@title="Top wear"]'
 
 
 class Xpath_men_casual_shirt:
-    xpathMenCasualShirts = '//a[text()="Men\'s Casual Shirts"]'
+    xpathMenCasualShirts = '//a[text()="Casual Shirts"]'
 
 class Xpath_men_t_shirt:
-    xpathMenT_Shirts = '//a[text()="Men\'s T-Shirts"]'
+    xpathMenT_Shirts = '//a[text()="T-Shirts"]'
     xpath_t_shirt_gender="//div[text()='Gender']/.."
     xpath_t_shirt_filtter_gender_by_men='//div[@class="XqNaEv"]/following-sibling::div[text()="Men"]'
     xpath_t_shirt_filtter_gender_by_women = '//div[@class="XqNaEv"]/following-sibling::div[text()="Women"]'
@@ -19,3 +20,6 @@ class Xpath_men_t_shirt:
     xpath_brand='//div[text()="Brand"]'
     xpathDiscount='//div[text()="Discount"]'
     xpathRating='//div[text()="Customer Ratings"]'
+    xpathSize='//div[text()="Size"]'
+    xpath_fabric='//div[text()="fabric"]'
+    xpath_pattern='//div[text()="Pattern"]'

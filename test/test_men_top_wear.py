@@ -1,18 +1,16 @@
 import pytest
-from pages.men_top_wear import Mens_t_shirt,MensCasualShirt
-@pytest.mark.skip
+from pages.fashion.men.men_clothing.men_casual_shirts import MensCasualShirt
+from pages.fashion.men.men_clothing.men_t_shirts import Mens_t_shirt
+
 def test_get_total_men_casual_shirt_list(browser):
     p1 = MensCasualShirt(browser)
     print(p1.get_count_men_casual_shirt_list())
-@pytest.mark.skip
+
 def test_getTsirtFilteredByMen(browser):
     p1 = Mens_t_shirt(browser)
     print(p1.getTsirtFilteredByMen())
-@pytest.mark.skip
-def test_getTsirtFilteredByWomen(browser):
-    p1 = Mens_t_shirt(browser)
-    print(p1.getTsirtFilteredByWomen())
-@pytest.mark.skip
+
+
 def test_getTsirtFilteredInPriceRange(browser):
     p1=Mens_t_shirt(browser)
     p1.getTsirtFilteredInPriceRange("200","500")
@@ -38,4 +36,31 @@ data=[("3"),("4")]
 def test_getTsirtFilteredByRating(browser,rateing):
     p1=Mens_t_shirt(browser)
     p1.getTsirtFilteredByRating(rateing)
+
+"""XS,2XS,S,M,L,XL,2XL,3XL,4XL,5XL,6XL,7XL,8XL"""
+header="size"
+data=[("s")]
+@pytest.mark.parametrize(header,data)
+def test_getTsirtFilteredBySize(browser,size):
+    p1=Mens_t_shirt(browser)
+    p1.getTsirtFilteredBySize(size)
+
+
+"""Cotton Blend,Elastane,Linen Blend,Modal,Nylon,Organic Cotton,Poly Cotton,Polyester,Pure Cotton,Viscose Rayon,Wool Blend"""
+header = "fabric"
+data = [("Cotton Blend")]
+@pytest.mark.parametrize(header, data)
+def test_getTsirtFilteredByFabric(browser, fabric):
+    p1 = Mens_t_shirt(browser)
+    p1.getTsirtFilteredByFabric(fabric)
+
+"""Animal Print,Abstract,Cartoon,Checkered,Colorblock,Conversational,Embroidered,Floral Print,Geometric Print
+Graphic Print,Military Camouflage,Polka Print,Printed,Self Design,Solid,Sporty,Striped,Tie & Dye,Typography"""
+header = "pattern"
+data = [("Abstract")]
+@pytest.mark.parametrize(header, data)
+def test_getTsirtFilteredByPattern(browser, pattern):
+    p1 = Mens_t_shirt(browser)
+    p1.getTsirtFilteredByPattern(pattern)
+
 
