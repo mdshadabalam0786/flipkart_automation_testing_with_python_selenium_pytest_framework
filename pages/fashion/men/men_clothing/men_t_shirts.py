@@ -265,6 +265,122 @@ class Mens_t_shirt:
         else:
             print(list_of_brand_name)
 
+    def getTsirtFilteredByColor(self,color):
+        list_of_brand_name=[]
+        p1=Selenium_wrapper(self.driver)
+        p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
+        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMan)
+        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.click_element('xpath',Xpath_men_t_shirt.xpath_color)
+        sleep(3)
+
+        fabric_xpath=f'//div[text()="{color}"]/..'
+        p1.click_element('xpath',fabric_xpath)
+        sleep(3)
+        elements_list=p1.click_elements('xpath',Xpath_men_t_shirt.xpathTshirtPrices)
+        for i in elements_list:
+            parent_window=self.driver.current_window_handle
+            i.click()
+            p1.explicit_wait_by_visible_element('xpath', '(//div[@class="hl05eU"])[1]')
+            sleep(2)
+            handles=self.driver.window_handles
+            self.driver.switch_to.window(handles[-1])
+            element_brandName=self.driver.find_element("xpath",'//span[@class="VU-ZEz"]')
+            self.driver.implicitly_wait(20)
+            list_of_brand_name.append(element_brandName.text)
+            self.driver.close()
+            sleep(1)
+            self.driver.switch_to.window(parent_window)
+
+        for i in list_of_brand_name:
+            if not color in i:
+                print(list_of_brand_name)
+                print(f"pattern filter is not working as expected {color}")
+                break
+        else:
+            print(list_of_brand_name)
+
+    def getTsirtFilteredByNeckType(self,neck_type):
+        list_of_brand_name=[]
+        p1=Selenium_wrapper(self.driver)
+        p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
+        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMan)
+        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.click_element('xpath',Xpath_men_t_shirt.xpath_neck_type)
+        sleep(3)
+        neck_type_xpath=f'//div[text()="{neck_type}"]/..'
+        p1.click_element('xpath',neck_type_xpath)
+        sleep(3)
+        elements_list=p1.click_elements('xpath',Xpath_men_t_shirt.xpathTshirtPrices)
+        for i in elements_list:
+            parent_window=self.driver.current_window_handle
+            i.click()
+            p1.explicit_wait_by_visible_element('xpath', '(//div[@class="hl05eU"])[1]')
+            sleep(2)
+            handles=self.driver.window_handles
+            self.driver.switch_to.window(handles[-1])
+            element_brandName=self.driver.find_element("xpath",'//span[@class="VU-ZEz"]')
+            self.driver.implicitly_wait(20)
+            list_of_brand_name.append(element_brandName.text)
+            self.driver.close()
+            sleep(1)
+            self.driver.switch_to.window(parent_window)
+
+        for i in list_of_brand_name:
+            if not neck_type in i:
+                print(list_of_brand_name)
+                print(f"pattern filter is not working as expected {neck_type}")
+                break
+        else:
+            print(list_of_brand_name)
+
+    def getTsirtFilteredByPackOf(self,pack_of):
+        list_of_brand_name=[]
+        p1=Selenium_wrapper(self.driver)
+        p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
+        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMan)
+        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.click_element('xpath',Xpath_men_t_shirt.xpath_pack_of)
+        sleep(3)
+        pack_of_xpath=f'//div[text()="{pack_of}"]/..'
+        p1.click_element('xpath',pack_of_xpath)
+        sleep(3)
+        elements_list=p1.click_elements('xpath',Xpath_men_t_shirt.xpathTshirtPrices)
+        for i in elements_list:
+            parent_window=self.driver.current_window_handle
+            i.click()
+            p1.explicit_wait_by_visible_element('xpath', '(//div[@class="hl05eU"])[1]')
+            sleep(2)
+            handles=self.driver.window_handles
+            self.driver.switch_to.window(handles[-1])
+            element_brandName=self.driver.find_element("xpath",'//span[@class="VU-ZEz"]')
+            self.driver.implicitly_wait(20)
+            list_of_brand_name.append(element_brandName.text)
+            self.driver.close()
+            sleep(1)
+            self.driver.switch_to.window(parent_window)
+            sleep(1)
+
+        for item in list_of_brand_name:
+            # Extract the number of packs from the string
+            num_packs = int(item.split(' ')[2])
+
+            # Check the range and if the number of packs matches
+            if pack_of == "3 - 6" and num_packs not in range(3, 7):
+                print(list_of_brand_name)
+                print(f"Pattern filter is not working as expected for {pack_of}")
+                break
+            elif pack_of == "7 - 10" and num_packs not in range(7, 11):
+                print(list_of_brand_name)
+                print(f"Pack of filter is not working as expected for {pack_of}")
+                break
+            elif pack_of == "Pack of 2" or pack_of == "Pack of 1":
+                print(list_of_brand_name)
+                print(f"Pack of filter is not working as expected for {pack_of}")
+                break
+        else:
+            print(list_of_brand_name)
+            print(f"All items match the filter for {pack_of}")
 
 
 

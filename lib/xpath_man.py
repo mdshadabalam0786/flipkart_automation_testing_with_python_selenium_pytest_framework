@@ -23,3 +23,6 @@ class Xpath_men_t_shirt:
     xpathSize='//div[text()="Size"]'
     xpath_fabric='//div[text()="fabric"]'
     xpath_pattern='//div[text()="Pattern"]'
+    xpath_color='//div[text()="Color"]'
+    xpath_neck_type='//div[text()="Neck Type"]'
+    xpath_pack_of='//div[text()="Pack of"]'

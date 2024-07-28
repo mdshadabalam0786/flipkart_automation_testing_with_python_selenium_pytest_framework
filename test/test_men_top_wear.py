@@ -63,4 +63,28 @@ def test_getTsirtFilteredByPattern(browser, pattern):
     p1 = Mens_t_shirt(browser)
     p1.getTsirtFilteredByPattern(pattern)
 
+"""Black,Beige,Blue,Brown,Dark Blue,Dark Green"""
+header = "color"
+data = [("Blue")]
+@pytest.mark.parametrize(header, data)
+def test_getTsirtFilteredByColor(browser, color):
+    p1 = Mens_t_shirt(browser)
+    p1.getTsirtFilteredByColor(color)
+
+"""Boat Neck,Cowl Neck,Crew Neck,Henley Neck,High Neck,Hooded Neck,Mandarin Collar,Peter Pan Collar,Polo Neck
+Racerback,Round Neck,Scoop Neck,Shawl Neck,Square Neck,Stylised Neck,Turtle Neck,V Neck,Zip Neck"""
+header = "neck_type"
+data = [("Boat Neck")]
+@pytest.mark.parametrize(header, data)
+def test_getTsirtFilteredByNeckType(browser, neck_type):
+    p1 = Mens_t_shirt(browser)
+    p1.getTsirtFilteredByNeckType(neck_type)
+
+"""3 - 6,7 - 10,Pack of 2,Pack of 1"""
+header = "pack_of"
+data = [("7 - 10"),("Pack of 1"),("3 - 6"),("Pack of 2")]
+@pytest.mark.parametrize(header, data)
+def test_getTsirtFilteredByPackOf(browser, pack_of):
+    p1 = Mens_t_shirt(browser)
+    p1.getTsirtFilteredByPackOf(pack_of)
 
