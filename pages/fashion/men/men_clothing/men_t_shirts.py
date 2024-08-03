@@ -9,14 +9,35 @@ from lib.xpath_man import Xpath_men_t_shirt,Xpath_men_top_wear
 class Mens_t_shirt:
     def __init__(self,driver):
         self.driver=driver
+    def get_count_men_tshirt_shirt_list(self):
+        count_item=0
+        count_pages=0
+        p1=Selenium_wrapper(self.driver)
+        p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
+        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_shirt1)
+        while True:
+            count_pages+=1
+            elements=self.driver.find_elements('xpath','//img[@class="_53J4C-"]')
+            self.driver.implicitly_wait(20)
+            count_item+=len(elements)
+            if count_pages!=26:
+                p1.click_element('xpath',"//span[text()='Next']")
+                self.driver.implicitly_wait(30)
+                sleep(4)
+            else:
+                break
+
+        return f"pages is :{count_pages}and total is:{count_item}"
+        sleep(5)
     def getTsirtFilteredByMen(self):
         original_product_name_list=[]
         product_name_list_filttered_only_men=[]
         product_name_=[]
         p1 = Selenium_wrapper(self.driver)
         p1.click_element("xpath", Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element('xpath',Xpath_men_t_shirt.xpath_t_shirt_gender)
         sleep(2)
         p1.click_element('xpath',Xpath_men_t_shirt.xpath_t_shirt_filtter_gender_by_men)
@@ -37,8 +58,8 @@ class Mens_t_shirt:
         t_shirt_price_list=[]
         p1 = Selenium_wrapper(self.driver)
         p1.click_element("xpath", Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.select_drop_down_by_value("xpath",Xpath_men_t_shirt.xpath_t_shirt_select_min_price,min_price)
         sleep(5)
         p1.select_drop_down_by_value("xpath", Xpath_men_t_shirt.xpath_t_shirt_select_max_price, max_price)
@@ -67,8 +88,8 @@ class Mens_t_shirt:
         brand_list=[]
         p1 = Selenium_wrapper(self.driver)
         p1.click_element("xpath", Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element("xpath",Xpath_men_t_shirt.xpath_brand)
         sleep(5)
         brand_name_=f'//div[@class="XqNaEv"]/following-sibling::div[text()="{brand_name.upper()}"]/..'
@@ -93,8 +114,8 @@ class Mens_t_shirt:
         filttered_discount=[]
         p1 = Selenium_wrapper(self.driver)
         p1.click_element("xpath", Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element('xpath',Xpath_men_t_shirt.xpathDiscount)
         sleep(2)
         xpath_discount=f'//div[@class="XqNaEv"]/following-sibling::div[text()="{discount_rate}% or more"]/..'
@@ -123,8 +144,8 @@ class Mens_t_shirt:
         with_rating_list=[]
         p1 = Selenium_wrapper(self.driver)
         p1.click_element("xpath", Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         xpath_rating=f'//div[@class="XqNaEv"]/following-sibling::div[text()="{rating}★ & above"]/..'
         p1.click_element('xpath',xpath_rating)
         sleep(5)
@@ -168,8 +189,8 @@ class Mens_t_shirt:
         with_size_list=[]
         p1 = Selenium_wrapper(self.driver)
         p1.click_element("xpath", Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element('xpath',Xpath_men_t_shirt.xpathSize)
         size_=size.upper()
         p1.click_element('xpath',f'//div[@class="XqNaEv"]/following-sibling::div[text()="{size_}"]/..')
@@ -202,8 +223,8 @@ class Mens_t_shirt:
         list_of_brand_name=[]
         p1=Selenium_wrapper(self.driver)
         p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element('xpath',Xpath_men_t_shirt.xpath_fabric)
         sleep(3)
         fabric_xpath=f'//div[text()="{fabric}"]/..'
@@ -234,8 +255,8 @@ class Mens_t_shirt:
         list_of_brand_name=[]
         p1=Selenium_wrapper(self.driver)
         p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element('xpath',Xpath_men_t_shirt.xpath_pattern)
         sleep(3)
 
@@ -269,8 +290,8 @@ class Mens_t_shirt:
         list_of_brand_name=[]
         p1=Selenium_wrapper(self.driver)
         p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element('xpath',Xpath_men_t_shirt.xpath_color)
         sleep(3)
 
@@ -304,8 +325,8 @@ class Mens_t_shirt:
         list_of_brand_name=[]
         p1=Selenium_wrapper(self.driver)
         p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element('xpath',Xpath_men_t_shirt.xpath_neck_type)
         sleep(3)
         neck_type_xpath=f'//div[text()="{neck_type}"]/..'
@@ -338,8 +359,8 @@ class Mens_t_shirt:
         list_of_brand_name=[]
         p1=Selenium_wrapper(self.driver)
         p1.click_element("xpath",Xpath_men_top_wear.xpathFashion)
-        p1.mouseMoveActionToElement('xpath',Xpath_men_top_wear.xpathMan)
-        p1.click_element('xpath',Xpath_men_t_shirt.xpathMenT_Shirts)
+        p1.mouseMoveActionToElement('xpath', Xpath_men_top_wear.xpathMenTopWear1)
+        p1.click_element('xpath', Xpath_men_t_shirt.xpathMenT_shirt1)
         p1.click_element('xpath',Xpath_men_t_shirt.xpath_pack_of)
         sleep(3)
         pack_of_xpath=f'//div[text()="{pack_of}"]/..'

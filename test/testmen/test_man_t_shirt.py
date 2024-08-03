@@ -1,10 +1,9 @@
 import pytest
-from pages.fashion.men.men_clothing.men_casual_shirts import MensCasualShirt
 from pages.fashion.men.men_clothing.men_t_shirts import Mens_t_shirt
+def test_get_total_men_t_shirt_list(browser):
+    p1 = Mens_t_shirt(browser)
+    print(p1.get_count_men_tshirt_shirt_list())
 
-def test_get_total_men_casual_shirt_list(browser):
-    p1 = MensCasualShirt(browser)
-    print(p1.get_count_men_casual_shirt_list())
 
 def test_getTsirtFilteredByMen(browser):
     p1 = Mens_t_shirt(browser)
@@ -87,4 +86,3 @@ data = [("7 - 10"),("Pack of 1"),("3 - 6"),("Pack of 2")]
 def test_getTsirtFilteredByPackOf(browser, pack_of):
     p1 = Mens_t_shirt(browser)
     p1.getTsirtFilteredByPackOf(pack_of)
-

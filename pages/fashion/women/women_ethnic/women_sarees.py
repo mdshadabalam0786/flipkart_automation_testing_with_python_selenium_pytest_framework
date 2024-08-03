@@ -1,6 +1,7 @@
 import re
 from random import randint
 from time import sleep
+
 from selenium.webdriver.support.select import Select
 from lib.seleniumWrapper import Selenium_wrapper
 from lib.xpath_women_ethnic import Xpath_women_ethnic
@@ -58,6 +59,7 @@ class Womenethnic_saree(Xpath_women_ethnic):
         p1.mouseMoveActionToElement('xpath', Xpath_women_ethnic.xpathWomenEthnic)
         p1.click_element('xpath', Xpath_women_ethnic.xpathWomenSarees)
         p1.click_element('xpath', Xpath_women_ethnic.xpathSarees)
+        sleep(5)
         priceElements = p1.click_elements('xpath', Xpath_women_ethnic.xpathPrices)
         randomNum=randint(1,40)
         priceElements[randomNum].click()

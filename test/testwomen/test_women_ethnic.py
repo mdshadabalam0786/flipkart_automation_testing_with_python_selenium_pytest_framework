@@ -1,17 +1,16 @@
 import pytest
-from pages.women_ethnic import Womenethnic_saree
-from pages.women_ethnic import Women_ethnic_saree_prices_validation
+from pages.fashion.women.women_ethnic.women_sarees import Womenethnic_saree
+from pages.fashion.women.women_ethnic.women_sarees import Women_ethnic_saree_prices_validation
 
-@pytest.mark.skip
+
 def test_get_women_sarees_list(browser):
     p1 = Womenethnic_saree(browser)
     p1.get_women_sarees_list()
 
-@pytest.mark.skip
 def test_select_random_sarees_mouse_over_on_image(browser):
     p1 = Womenethnic_saree(browser)
     p1.select_random_sarees_mouse_over_on_image()
-@pytest.mark.skip
+
 def test_select_random_sarees_mouse_over_on_fullimage(browser):
     p1 = Womenethnic_saree(browser)
     p1.select_random_sarees_mouse_over_on_fullimage()
